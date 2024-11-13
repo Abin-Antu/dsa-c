@@ -1,16 +1,17 @@
-#include<stdio.h>
-struct node
-{
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
     int data;
-    struct Node* next;
+    struct node* next;
 };
 
 // Global head pointer
-struct Node* head = NULL;
+struct node* head = NULL;
 
 // Function to create a new node
-struct Node* createNode(int data) {
-    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+struct node* createNode(int data) {
+    struct node* newNode = (struct node*) malloc(sizeof(struct node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
@@ -18,19 +19,19 @@ struct Node* createNode(int data) {
 
 // Function to insert a node at the beginning
 void insertAtBeginning(int data) {
-    struct Node* newNode = createNode(data);
+    struct node* newNode = createNode(data);
     newNode->next = head;
     head = newNode;
 }
 
 // Function to insert a node at the end
 void insertAtEnd(int data) {
-    struct Node* newNode = createNode(data);
+    struct node* newNode = createNode(data);
     if (head == NULL) {
         head = newNode;
         return;
     }
-    struct Node* last = head;
+    struct node* last = head;
     while (last->next != NULL) {
         last = last->next;
     }
@@ -44,7 +45,7 @@ void insertAtNthPosition(int data, int position) {
         return;
     }
     
-    struct Node* newNode = createNode(data);
+    struct node* newNode = createNode(data);
     
     // If inserting at the beginning (position 1)
     if (position == 1) {
@@ -53,7 +54,7 @@ void insertAtNthPosition(int data, int position) {
         return;
     }
 
-    struct Node* temp = head;
+    struct node* temp = head;
     int count = 1;
 
     // Traverse to the position before the desired position
@@ -80,7 +81,7 @@ void deleteFromFront() {
         printf("List is empty, nothing to delete.\n");
         return;
     }
-    struct Node* temp = head;
+    struct node* temp = head;
     head = head->next; // Move the head to the next node
     free(temp); // Free the memory of the old head
     printf("Node deleted from the front.\n");
@@ -101,13 +102,13 @@ void deleteFromEnd() {
         return;
     }
 
-    struct Node* temp = head;
+    struct node* temp = head;
     while (temp->next != NULL && temp->next->next != NULL) {
         temp = temp->next; // Traverse to the second last node
     }
 
     // Delete the last node
-    struct Node* last = temp->next;
+    struct node* last = temp->next;
     temp->next = NULL;
     free(last);
     printf("Node deleted from the end.\n");
@@ -119,7 +120,7 @@ void display() {
         printf("List is empty.\n");
         return;
     }
-    struct Node* temp = head;
+    struct node* temp = head;
     while (temp != NULL) {
         printf("%d -> ", temp->data);
         temp = temp->next;

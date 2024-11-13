@@ -78,8 +78,8 @@ if(a[i].row==b[j].row&&a[i].col==b[j].col)
 {
 result[k].row=a[i].row;
 result[k].col=a[i].col;
-result[k].value=a[i].value+b[j].valu
-e;
+result[k].value=a[i].value+b[j].value;
+
 i++;
 j++;
 k++;
