@@ -9,7 +9,8 @@ void bfs(int start, int n);
 void dfs(int start, int n);
 
 int main() {
-    int n, start;
+    int n, start, choice;
+    
     // Input number of vertices
     printf("Enter number of vertices: ");
     scanf("%d", &n);
@@ -23,7 +24,7 @@ int main() {
     }
     
     // Input the start vertex
-    printf("Enter the starting vertex for DFS: ");
+    printf("Enter the starting vertex: ");
     scanf("%d", &start);
     
     // Input validation
@@ -32,13 +33,24 @@ int main() {
         return 1;
     }
 
+    // Choose traversal method
+    printf("Choose traversal method (1 for DFS, 2 for BFS): ");
+    scanf("%d", &choice);
+
     // Initialize visited array
     for (int i = 0; i < n; i++) {
         visited[i] = 0;
     }
 
-    printf("DFS Traversal starting from vertex %d: ", start);
-    dfs(start, n);
+    if (choice == 1) {
+        printf("DFS Traversal starting from vertex %d: ", start);
+        dfs(start, n);
+    } else if (choice == 2) {
+        printf("BFS Traversal starting from vertex %d: ", start);
+        bfs(start, n);
+    } else {
+        printf("Invalid choice!\n");
+    }
 
     return 0;
 }
@@ -60,6 +72,26 @@ void dfs(int start, int n) {
                 if (adj[vertex][i] == 1 && visited[i] == 0) {
                     stack[++top] = i;
                 }
+            }
+        }
+    }
+}
+
+// BFS function using a queue
+void bfs(int start, int n) {
+    int queue[MAX], front = 0, rear = 0;
+    queue[rear++] = start;
+    visited[start] = 1;
+
+    while (front < rear) {
+        int vertex = queue[front++];
+        printf("%d ", vertex);
+
+        // Enqueue all unvisited adjacent vertices
+        for (int i = 0; i < n; i++) {
+            if (adj[vertex][i] == 1 && visited[i] == 0) {
+                queue[rear++] = i;
+                visited[i] = 1;
             }
         }
     }
