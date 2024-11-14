@@ -56,6 +56,7 @@ int main() {
 }
 
 // DFS function using a stack
+// DFS function using a stack
 void dfs(int start, int n) {
     int stack[MAX], top = -1;
     stack[++top] = start;
@@ -68,7 +69,7 @@ void dfs(int start, int n) {
             visited[vertex] = 1;
 
             // Push all unvisited adjacent vertices
-            for (int i = n - 1; i >= 0; i--) {
+            for (int i = 0; i < n; i++) {
                 if (adj[vertex][i] == 1 && visited[i] == 0) {
                     stack[++top] = i;
                 }
@@ -76,6 +77,7 @@ void dfs(int start, int n) {
         }
     }
 }
+
 
 // BFS function using a queue
 void bfs(int start, int n) {
